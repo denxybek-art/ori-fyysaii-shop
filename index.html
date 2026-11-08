@@ -36,7 +36,16 @@ nav{display:flex;gap:clamp(12px,3vw,35px);align-items:center}nav a{font-size:14p
 <div class="formrow"><div class="field" style="grid-column:1/-1"><label for="username">ឈ្មោះអ្នកប្រើ Roblox របស់អ្នក</label><input id="username" name="username" autocomplete="off" placeholder="បញ្ចូលឈ្មោះអ្នកប្រើរបស់អ្នក..." maxlength="20" pattern="[A-Za-z0-9_]{3,20}" required></div></div>
 <div id="selectedPackage" class="package-summary" aria-live="polite"><div class="summary-left"><div class="summary-icon">⬡</div><div><div class="summary-label">កញ្ចប់ដែលអ្នកបានជ្រើសរើស</div><div class="summary-amount">0 Robux</div></div></div><div class="summary-price">$0.00<small>តម្លៃសរុប</small></div></div>
 <button class="btn full" type="submit">ϟ &nbsp; បង្កើតការបញ្ជាទិញ</button><div id="status" class="status" aria-live="polite"></div>
-</form>
+</form><div id="robloxProfileBox" style="margin-top:15px;">
+  <button type="button" id="verifyRobloxBtn">
+    ពិនិត្យ Roblox Profile
+  </button>
+
+  <div id="robloxProfileResult"
+       style="margin-top:12px;"
+       aria-live="polite">
+  </div>
+</div>
 <div class="trustline"><span>♢ &nbsp; សុវត្ថិភាព និងទុកចិត្តបាន</span><span>ϟ &nbsp; បញ្ជាទិញភ្លាមៗ</span><span>♧ &nbsp; ជំនួយ</span></div>
 </div>
 <aside class="panel">
@@ -89,6 +98,64 @@ $('orderForm').addEventListener('submit',e=>{e.preventDefault();const username=$
 $('khqrClose').addEventListener('click',()=>{$('khqrModal').classList.remove('show')});$('khqrModal').addEventListener('click',e=>{if(e.target===$('khqrModal'))$('khqrModal').classList.remove('show')});document.addEventListener('keydown',e=>{if(e.key==='Escape')$('khqrModal').classList.remove('show')});
 $('clear').addEventListener('click',()=>{if(confirm('តើអ្នកចង់លុបការបញ្ជាទិញសាកល្បងទាំងអស់ដែលបានរក្សាទុកក្នុងកម្មវិធីរុករកនេះមែនទេ?')){localStorage.removeItem('orifyysaii_demo_orders');showOrders();$('status').className='status'}});
 render();showOrders();
-})();
+})();const verifyBtn = document.getElementById('verifyRobloxBtn');
+const profileResult = document.getElementById('robloxProfileResult');
+
+if (verifyBtn && profileResult) {
+  verifyBtn.addEventListener('click', async () => {
+    const usernameInput = document.getElementById('username');
+    const username = usernameInput?.value.trim();
+
+    if (!username) {
+      profileResult.textContent = 'សូមបញ្ចូល Roblox Username ជាមុនសិន';
+      return;
+    }
+
+    verifyBtn.disabled = true;
+    verifyBtn.textContent = 'កំពុងពិនិត្យ...';
+    profileResult.textContent = '';
+
+    try {
+      const response = await fetch(
+        `/api/roblox-user?username=${encodeURIComponent(username)}`
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'រកមិនឃើញ Roblox User');
+      }
+
+      profileResult.innerHTML = `
+        <div style="display:flex;align-items:center;gap:12px;">
+          ${data.avatar ? `<img src="${data.avatar}" alt="Roblox Avatar" width="75" height="75" style="border-radius:12px;">` : ''}
+          <div>
+            <strong>${escapeHTML(data.displayName)}</strong><br>
+            @${escapeHTML(data.username)}<br>
+            User ID: ${data.id}<br>
+            <a href="${data.profileUrl}" target="_blank" rel="noopener noreferrer">
+              View Roblox Profile
+            </a>
+          </div>
+        </div>
+      `;
+    } catch (error) {
+      profileResult.textContent = error.message;
+    } finally {
+      verifyBtn.disabled = false;
+      verifyBtn.textContent = 'ពិនិត្យ Roblox Profile';
+    }
+  });
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[char]);
+}
 </script>
 </body></html>
