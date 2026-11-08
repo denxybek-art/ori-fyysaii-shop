@@ -44,10 +44,6 @@ nav{display:flex;gap:clamp(12px,3vw,35px);align-items:center}nav a{font-size:14p
   <div id="selectedPackage" class="package-summary" aria-live="polite"><div class="summary-left"><div class="summary-icon">⬡</div><div><div class="summary-label">កញ្ចប់ដែលអ្នកបានជ្រើសរើស</div><div class="summary-amount">0 Robux</div></div></div><div class="summary-price">$0.00<small>តម្លៃសរុប</small></div></div>
 <button class="btn full" type="submit">ϟ &nbsp; បង្កើតការបញ្ជាទិញ</button><div id="status" class="status" aria-live="polite"></div>
 </form><div id="robloxProfileBox" style="margin-top:15px;">
-  <button type="button" id="verifyRobloxBtn">
-    ពិនិត្យ Roblox Profile
-  </button>
-
   <div id="robloxProfileResult"
        style="margin-top:12px;"
        aria-live="polite">
@@ -150,7 +146,7 @@ if (verifyBtn && profileResult) {
       profileResult.textContent = error.message;
     } finally {
       verifyBtn.disabled = false;
-      verifyBtn.textContent = 'Verify';
+      verifyBtn.textContent = 'ជោគជ័យ✅';
     }
   });
 }
