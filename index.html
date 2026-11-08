@@ -83,6 +83,22 @@ nav{display:flex;gap:clamp(12px,3vw,35px);align-items:center}nav a{font-size:14p
     <img id="khqrImage" alt="KHQR សម្រាប់ចំនួនប្រាក់ដែលបានជ្រើសរើស">
     <p>សូមស្កេន QR ខាងលើតាមកម្មវិធីធនាគាររបស់អ្នក ហើយបង់ប្រាក់ឱ្យត្រូវនឹងចំនួនដែលបង្ហាញ។</p>
     <p class="khqr-note">បន្ទាប់ពីបង់ប្រាក់ សូមផ្ញើលេខបញ្ជាទិញ និងបង្កាន់ដៃទៅម្ចាស់ហាង។ </p>
+    <div style="margin:15px 0;padding:18px;background:#111;border:1px solid #dc2626;border-radius:15px;color:#fff;box-shadow:0 0 12px rgba(220,38,38,.2);">
+  <h3 style="color:#fff;margin-top:0;">UPLOAD PAYMENT RECEIPT</h3>
+  <p style="color:#aaa;font-size:13px;">សូមដាក់រូបវិក្កយបត្របង់ប្រាក់របស់អ្នក</p>
+
+  <input type="file"
+    id="receiptFile"
+    accept="image/png,image/jpeg,image/webp"
+    style="width:100%;padding:10px;background:#1a1a1a;color:#fff;border:1px solid #dc2626;border-radius:10px;">
+
+  <button type="button" id="sendReceiptBtn"
+    style="width:100%;margin-top:12px;padding:13px;background:#dc2626;color:#fff;border:0;border-radius:10px;font-weight:bold;">
+    ផ្ញើវិក្កយបត្រ
+  </button>
+
+  <p id="receiptStatus" style="color:#fff;"></p>
+</div>
     <button id="khqrClose" type="button">បិទ</button>
   </div>
 </div>
