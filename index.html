@@ -34,7 +34,14 @@ nav{display:flex;gap:clamp(12px,3vw,35px);align-items:center}nav a{font-size:14p
 <div class="packs" id="packs"></div>
 <form id="orderForm">
 <div class="formrow"><div class="field" style="grid-column:1/-1"><label for="username">ឈ្មោះអ្នកប្រើ Roblox របស់អ្នក</label><input id="username" name="username" autocomplete="off" placeholder="បញ្ចូលឈ្មោះអ្នកប្រើរបស់អ្នក..." maxlength="20" pattern="[A-Za-z0-9_]{3,20}" required></div></div>
-<div id="selectedPackage" class="package-summary" aria-live="polite"><div class="summary-left"><div class="summary-icon">⬡</div><div><div class="summary-label">កញ្ចប់ដែលអ្នកបានជ្រើសរើស</div><div class="summary-amount">0 Robux</div></div></div><div class="summary-price">$0.00<small>តម្លៃសរុប</small></div></div>
+<div id="robloxProfileBox" style="margin:14px 0;padding:14px;border:1px solid #dc2626;border-radius:14px;background:#111;color:#fff;">
+  <strong>Roblox Profile</strong>
+  <button type="button" id="verifyRobloxBtn" class="btn full">
+    ពិនិត្យ Roblox Profile
+  </button>
+  <div id="robloxProfileResult" style="margin-top:12px;" aria-live="polite"></div>
+</div>
+  <div id="selectedPackage" class="package-summary" aria-live="polite"><div class="summary-left"><div class="summary-icon">⬡</div><div><div class="summary-label">កញ្ចប់ដែលអ្នកបានជ្រើសរើស</div><div class="summary-amount">0 Robux</div></div></div><div class="summary-price">$0.00<small>តម្លៃសរុប</small></div></div>
 <button class="btn full" type="submit">ϟ &nbsp; បង្កើតការបញ្ជាទិញ</button><div id="status" class="status" aria-live="polite"></div>
 </form><div id="robloxProfileBox" style="margin-top:15px;">
   <button type="button" id="verifyRobloxBtn">
@@ -79,7 +86,7 @@ nav{display:flex;gap:clamp(12px,3vw,35px);align-items:center}nav a{font-size:14p
     <p id="khqrOrderInfo"></p>
     <img id="khqrImage" alt="KHQR សម្រាប់ចំនួនប្រាក់ដែលបានជ្រើសរើស">
     <p>សូមស្កេន QR ខាងលើតាមកម្មវិធីធនាគាររបស់អ្នក ហើយបង់ប្រាក់ឱ្យត្រូវនឹងចំនួនដែលបង្ហាញ។</p>
-    <p class="khqr-note">បន្ទាប់ពីបង់ប្រាក់ សូមផ្ញើលេខបញ្ជាទិញ និងបង្កាន់ដៃទៅម្ចាស់ហាង។ ស្ថានភាពនឹងនៅ PENDING រហូតដល់ម្ចាស់ហាងពិនិត្យឃើញប្រាក់ចូលពិតក្នុងកម្មវិធីធនាគារ។ Screenshot តែមួយមិនមែនជាភស្តុតាងថាបានបង់ប្រាក់ទេ។ គេហទំព័រនេះមិនទាន់មានប្រព័ន្ធទទួលការបញ្ជាទិញកណ្ដាល ឬ Auto Verify ទេ។</p>
+    <p class="khqr-note">បន្ទាប់ពីបង់ប្រាក់ សូមផ្ញើលេខបញ្ជាទិញ និងបង្កាន់ដៃទៅម្ចាស់ហាង។ ស្ថានភាពនឹងនៅ PENDING រហូតដល់ម្ចាស់ហាងពិនិត្យឃើញប្រាក់ចូលពិតក្នុងកម្មវិធីធនាគារ។ Screenshot តែមួយមិនមែនជាភស្តុតាងថាបានបង់ប្រាក់ទេ។ </p>
     <button id="khqrClose" type="button">បិទ</button>
   </div>
 </div>
