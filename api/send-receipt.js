@@ -31,10 +31,9 @@ export default async function handler(req, res) {
     form.append('chat_id', chatId);
     form.append('photo', new Blob([buffer], { type: mimeType }), 'receipt.jpg');
     form.append(
-      'caption',
-      `🧾 NEW ORDER\nUsername: ${String(username).slice(0, 20)}\nRobux: ${String(robux || '').slice(0, 30)}\nAmount: ${String(amount || '').slice(0, 30)}\nStatus: PENDING`
-    );
-
+  'caption',
+  `🛒 NEW ORDER\n\n👤 Username: ${String(username).slice(0, 20)}\n💎 Total Robux: ${String(robux || '').slice(0, 30)}\n💵 Price: ${String(amount || '').slice(0, 30)}\n\n⏳ Status: PENDING`
+);
     const response = await fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
       method: 'POST',
       body: form
